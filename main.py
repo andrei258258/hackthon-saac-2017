@@ -2,19 +2,19 @@ import sys
 import gym
 from gym import wrappers
 
-from example import RandomAgent as Agent
+from agente import RandomAgent as Agent
 
 env = gym.make('BipedalWalker-v2')
 # You provide the directory to write to (can be an existing
 # directory, including one with existing data -- all monitor files
 # will be namespaced). You can also dump to a tempdir if you'd
 # like: tempfile.mkdtemp().
-outdir = '/tmp/hackathon'
-env = wrappers.Monitor(env, directory=outdir, force=True)
+#outdir = 'C:\\Users\\Alex\\Desktop\\hackthon-saac-2017'
+#env = wrappers.Monitor(env, directory=outdir, force=True)
 env.seed(0)
 agent = Agent(env.action_space)
 
-episode_count = 1000
+episode_count = 1
 reward = 0
 done = False
 
@@ -23,6 +23,7 @@ for i in range(episode_count):
   while True:
       action = agent.act(ob, reward, done)
       ob, reward, done, _ = env.step(action)
+      env.render()
       if done:
           break
       # Note there's no env.render() here. But the environment still can open window and
@@ -34,4 +35,4 @@ env.close()
 
 # Upload to the scoreboard. We could also do this from another
 # process if we wanted.
-gym.upload(outdir)
+#gym.upload(outdir)
