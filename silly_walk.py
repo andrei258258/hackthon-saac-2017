@@ -2,7 +2,7 @@ import sys
 import gym
 from gym import wrappers
 
-from agente import RandomAgent as Agent
+from top_agents import MinistryOfSillyWalkAgent as Agent
 
 env = gym.make('BipedalWalker-v2')
 # You provide the directory to write to (can be an existing
@@ -14,7 +14,7 @@ env = gym.make('BipedalWalker-v2')
 env.seed(0)
 agent = Agent(env.action_space)
 
-episode_count = 1
+episode_count = 20
 reward = 0
 done = False
 
